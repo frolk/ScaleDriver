@@ -1,0 +1,571 @@
+
+ScaleDriverProject.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000003e2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000036e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000005f  00800100  00800100  000003e2  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000003e2  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000414  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000c0  00000000  00000000  00000454  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000004f0  00000000  00000000  00000514  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000002a6  00000000  00000000  00000a04  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000038b  00000000  00000000  00000caa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000220  00000000  00000000  00001038  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000285  00000000  00000000  00001258  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000003d5  00000000  00000000  000014dd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000080  00000000  00000000  000018b2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 89 00 	jmp	0x112	; 0x112 <__vector_18>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 d4 00 	jmp	0x1a8	; 0x1a8 <__vector_20>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	af 35       	cpi	r26, 0x5F	; 95
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 70 01 	call	0x2e0	; 0x2e0 <main>
+  88:	0c 94 b5 01 	jmp	0x36a	; 0x36a <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <BL_GetMessage>:
+uint8_t bluetCommand;
+uint16_t PWMvalue = 0;
+
+
+void BL_GetMessage() // getting value from ring buffer to BlutoothMessage array
+{
+  90:	cf 93       	push	r28
+  92:	df 93       	push	r29
+  94:	00 d0       	rcall	.+0      	; 0x96 <BL_GetMessage+0x6>
+  96:	cd b7       	in	r28, 0x3d	; 61
+  98:	de b7       	in	r29, 0x3e	; 62
+	
+	for (int i=0; i<6; i++)
+  9a:	1a 82       	std	Y+2, r1	; 0x02
+  9c:	19 82       	std	Y+1, r1	; 0x01
+  9e:	0e c0       	rjmp	.+28     	; 0xbc <BL_GetMessage+0x2c>
+	{
+		BluetoothMessage[i] = BL_GetChar();
+  a0:	0e 94 47 01 	call	0x28e	; 0x28e <BL_GetChar>
+  a4:	28 2f       	mov	r18, r24
+  a6:	89 81       	ldd	r24, Y+1	; 0x01
+  a8:	9a 81       	ldd	r25, Y+2	; 0x02
+  aa:	89 5f       	subi	r24, 0xF9	; 249
+  ac:	9e 4f       	sbci	r25, 0xFE	; 254
+  ae:	fc 01       	movw	r30, r24
+  b0:	20 83       	st	Z, r18
+
+
+void BL_GetMessage() // getting value from ring buffer to BlutoothMessage array
+{
+	
+	for (int i=0; i<6; i++)
+  b2:	89 81       	ldd	r24, Y+1	; 0x01
+  b4:	9a 81       	ldd	r25, Y+2	; 0x02
+  b6:	01 96       	adiw	r24, 0x01	; 1
+  b8:	9a 83       	std	Y+2, r25	; 0x02
+  ba:	89 83       	std	Y+1, r24	; 0x01
+  bc:	89 81       	ldd	r24, Y+1	; 0x01
+  be:	9a 81       	ldd	r25, Y+2	; 0x02
+  c0:	06 97       	sbiw	r24, 0x06	; 6
+  c2:	74 f3       	brlt	.-36     	; 0xa0 <BL_GetMessage+0x10>
+	{
+		BluetoothMessage[i] = BL_GetChar();
+	}
+	BL_FlushRxBuf();  // flush our buffer and start from the beginning
+  c4:	0e 94 3a 01 	call	0x274	; 0x274 <BL_FlushRxBuf>
+
+}
+  c8:	0f 90       	pop	r0
+  ca:	0f 90       	pop	r0
+  cc:	df 91       	pop	r29
+  ce:	cf 91       	pop	r28
+  d0:	08 95       	ret
+
+000000d2 <BL_DefComd>:
+
+
+
+void BL_DefComd()
+{
+  d2:	cf 93       	push	r28
+  d4:	df 93       	push	r29
+  d6:	cd b7       	in	r28, 0x3d	; 61
+  d8:	de b7       	in	r29, 0x3e	; 62
+	BL_GetMessage(); //pulling up buffer's data one by one
+  da:	0e 94 48 00 	call	0x90	; 0x90 <BL_GetMessage>
+	if ((BluetoothMessage[0] == '-')|(BluetoothMessage[0] == '+'))
+  de:	80 91 07 01 	lds	r24, 0x0107
+  e2:	91 e0       	ldi	r25, 0x01	; 1
+  e4:	8d 32       	cpi	r24, 0x2D	; 45
+  e6:	09 f0       	breq	.+2      	; 0xea <BL_DefComd+0x18>
+  e8:	90 e0       	ldi	r25, 0x00	; 0
+  ea:	20 91 07 01 	lds	r18, 0x0107
+  ee:	81 e0       	ldi	r24, 0x01	; 1
+  f0:	2b 32       	cpi	r18, 0x2B	; 43
+  f2:	09 f0       	breq	.+2      	; 0xf6 <BL_DefComd+0x24>
+  f4:	80 e0       	ldi	r24, 0x00	; 0
+  f6:	89 2b       	or	r24, r25
+  f8:	88 23       	and	r24, r24
+  fa:	41 f0       	breq	.+16     	; 0x10c <BL_DefComd+0x3a>
+	{
+		PWMvalue = atoi(BluetoothMessage+1); //convert our string into float integer
+  fc:	88 e0       	ldi	r24, 0x08	; 8
+  fe:	91 e0       	ldi	r25, 0x01	; 1
+ 100:	0e 94 8f 01 	call	0x31e	; 0x31e <atoi>
+ 104:	90 93 01 01 	sts	0x0101, r25
+ 108:	80 93 00 01 	sts	0x0100, r24
+	}
+	
+}
+ 10c:	df 91       	pop	r29
+ 10e:	cf 91       	pop	r28
+ 110:	08 95       	ret
+
+00000112 <__vector_18>:
+uint8_t rxCount = 0;// Receive variables
+uint8_t rxMessage[16];
+uint8_t BLmesIsComplete;
+
+ISR (USART_RX_vect)   // receive interrupt routine
+{
+ 112:	1f 92       	push	r1
+ 114:	0f 92       	push	r0
+ 116:	00 90 5f 00 	lds	r0, 0x005F
+ 11a:	0f 92       	push	r0
+ 11c:	11 24       	eor	r1, r1
+ 11e:	2f 93       	push	r18
+ 120:	3f 93       	push	r19
+ 122:	8f 93       	push	r24
+ 124:	9f 93       	push	r25
+ 126:	ef 93       	push	r30
+ 128:	ff 93       	push	r31
+ 12a:	cf 93       	push	r28
+ 12c:	df 93       	push	r29
+ 12e:	cd b7       	in	r28, 0x3d	; 61
+ 130:	de b7       	in	r29, 0x3e	; 62
+	if(rxCount < SIZE_BUF)
+ 132:	80 91 06 01 	lds	r24, 0x0106
+ 136:	80 32       	cpi	r24, 0x20	; 32
+ 138:	48 f5       	brcc	.+82     	; 0x18c <__vector_18+0x7a>
+	{
+		BLrxBuf[rxBufTail] = UDR0;
+ 13a:	80 91 04 01 	lds	r24, 0x0104
+ 13e:	88 2f       	mov	r24, r24
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	26 ec       	ldi	r18, 0xC6	; 198
+ 144:	30 e0       	ldi	r19, 0x00	; 0
+ 146:	f9 01       	movw	r30, r18
+ 148:	20 81       	ld	r18, Z
+ 14a:	82 5f       	subi	r24, 0xF2	; 242
+ 14c:	9e 4f       	sbci	r25, 0xFE	; 254
+ 14e:	fc 01       	movw	r30, r24
+ 150:	20 83       	st	Z, r18
+
+		if(BLrxBuf[rxBufTail] == 0x0A)
+ 152:	80 91 04 01 	lds	r24, 0x0104
+ 156:	88 2f       	mov	r24, r24
+ 158:	90 e0       	ldi	r25, 0x00	; 0
+ 15a:	82 5f       	subi	r24, 0xF2	; 242
+ 15c:	9e 4f       	sbci	r25, 0xFE	; 254
+ 15e:	fc 01       	movw	r30, r24
+ 160:	80 81       	ld	r24, Z
+ 162:	8a 30       	cpi	r24, 0x0A	; 10
+ 164:	19 f4       	brne	.+6      	; 0x16c <__vector_18+0x5a>
+		{
+			BLmesIsComplete = 1;
+ 166:	81 e0       	ldi	r24, 0x01	; 1
+ 168:	80 93 5e 01 	sts	0x015E, r24
+		}
+		
+		rxBufTail++;
+ 16c:	80 91 04 01 	lds	r24, 0x0104
+ 170:	8f 5f       	subi	r24, 0xFF	; 255
+ 172:	80 93 04 01 	sts	0x0104, r24
+		if(rxBufTail == SIZE_BUF) rxBufTail = 0;
+ 176:	80 91 04 01 	lds	r24, 0x0104
+ 17a:	80 32       	cpi	r24, 0x20	; 32
+ 17c:	11 f4       	brne	.+4      	; 0x182 <__vector_18+0x70>
+ 17e:	10 92 04 01 	sts	0x0104, r1
+		rxCount++;
+ 182:	80 91 06 01 	lds	r24, 0x0106
+ 186:	8f 5f       	subi	r24, 0xFF	; 255
+ 188:	80 93 06 01 	sts	0x0106, r24
+		
+	}
+}
+ 18c:	df 91       	pop	r29
+ 18e:	cf 91       	pop	r28
+ 190:	ff 91       	pop	r31
+ 192:	ef 91       	pop	r30
+ 194:	9f 91       	pop	r25
+ 196:	8f 91       	pop	r24
+ 198:	3f 91       	pop	r19
+ 19a:	2f 91       	pop	r18
+ 19c:	0f 90       	pop	r0
+ 19e:	00 92 5f 00 	sts	0x005F, r0
+ 1a2:	0f 90       	pop	r0
+ 1a4:	1f 90       	pop	r1
+ 1a6:	18 95       	reti
+
+000001a8 <__vector_20>:
+
+ISR (USART_TX_vect)   // transmit interrupt routine
+{
+ 1a8:	1f 92       	push	r1
+ 1aa:	0f 92       	push	r0
+ 1ac:	00 90 5f 00 	lds	r0, 0x005F
+ 1b0:	0f 92       	push	r0
+ 1b2:	11 24       	eor	r1, r1
+ 1b4:	2f 93       	push	r18
+ 1b6:	3f 93       	push	r19
+ 1b8:	8f 93       	push	r24
+ 1ba:	9f 93       	push	r25
+ 1bc:	ef 93       	push	r30
+ 1be:	ff 93       	push	r31
+ 1c0:	cf 93       	push	r28
+ 1c2:	df 93       	push	r29
+ 1c4:	cd b7       	in	r28, 0x3d	; 61
+ 1c6:	de b7       	in	r29, 0x3e	; 62
+	if(txCount > 0)
+ 1c8:	80 91 03 01 	lds	r24, 0x0103
+ 1cc:	88 23       	and	r24, r24
+ 1ce:	e1 f0       	breq	.+56     	; 0x208 <__vector_20+0x60>
+	{
+		UDR0 = BLtxBuf[txBufHead]; // take one byte from buffer and put it into transmit register
+ 1d0:	86 ec       	ldi	r24, 0xC6	; 198
+ 1d2:	90 e0       	ldi	r25, 0x00	; 0
+ 1d4:	20 91 02 01 	lds	r18, 0x0102
+ 1d8:	22 2f       	mov	r18, r18
+ 1da:	30 e0       	ldi	r19, 0x00	; 0
+ 1dc:	22 5d       	subi	r18, 0xD2	; 210
+ 1de:	3e 4f       	sbci	r19, 0xFE	; 254
+ 1e0:	f9 01       	movw	r30, r18
+ 1e2:	20 81       	ld	r18, Z
+ 1e4:	fc 01       	movw	r30, r24
+ 1e6:	20 83       	st	Z, r18
+		txCount--;
+ 1e8:	80 91 03 01 	lds	r24, 0x0103
+ 1ec:	81 50       	subi	r24, 0x01	; 1
+ 1ee:	80 93 03 01 	sts	0x0103, r24
+		txBufHead++;
+ 1f2:	80 91 02 01 	lds	r24, 0x0102
+ 1f6:	8f 5f       	subi	r24, 0xFF	; 255
+ 1f8:	80 93 02 01 	sts	0x0102, r24
+		if(txBufHead == SIZE_BUF) txBufHead = 0;
+ 1fc:	80 91 02 01 	lds	r24, 0x0102
+ 200:	80 32       	cpi	r24, 0x20	; 32
+ 202:	11 f4       	brne	.+4      	; 0x208 <__vector_20+0x60>
+ 204:	10 92 02 01 	sts	0x0102, r1
+		
+	}
+}
+ 208:	df 91       	pop	r29
+ 20a:	cf 91       	pop	r28
+ 20c:	ff 91       	pop	r31
+ 20e:	ef 91       	pop	r30
+ 210:	9f 91       	pop	r25
+ 212:	8f 91       	pop	r24
+ 214:	3f 91       	pop	r19
+ 216:	2f 91       	pop	r18
+ 218:	0f 90       	pop	r0
+ 21a:	00 92 5f 00 	sts	0x005F, r0
+ 21e:	0f 90       	pop	r0
+ 220:	1f 90       	pop	r1
+ 222:	18 95       	reti
+
+00000224 <BL_Init>:
+
+void BL_Init(uint16_t ubrr) // initialize UART
+{
+ 224:	cf 93       	push	r28
+ 226:	df 93       	push	r29
+ 228:	00 d0       	rcall	.+0      	; 0x22a <BL_Init+0x6>
+ 22a:	cd b7       	in	r28, 0x3d	; 61
+ 22c:	de b7       	in	r29, 0x3e	; 62
+ 22e:	9a 83       	std	Y+2, r25	; 0x02
+ 230:	89 83       	std	Y+1, r24	; 0x01
+	
+	//set baud rate = 9600bps
+	UBRR0H = (uint8_t)(ubrr>>8);
+ 232:	85 ec       	ldi	r24, 0xC5	; 197
+ 234:	90 e0       	ldi	r25, 0x00	; 0
+ 236:	29 81       	ldd	r18, Y+1	; 0x01
+ 238:	3a 81       	ldd	r19, Y+2	; 0x02
+ 23a:	23 2f       	mov	r18, r19
+ 23c:	33 27       	eor	r19, r19
+ 23e:	fc 01       	movw	r30, r24
+ 240:	20 83       	st	Z, r18
+	UBRR0L = (uint8_t)ubrr;
+ 242:	84 ec       	ldi	r24, 0xC4	; 196
+ 244:	90 e0       	ldi	r25, 0x00	; 0
+ 246:	29 81       	ldd	r18, Y+1	; 0x01
+ 248:	fc 01       	movw	r30, r24
+ 24a:	20 83       	st	Z, r18
+	
+	//set 1 stop bit, no parity bit and 8 bit character size
+	UCSR0C = 0x06;  // (1<<UCSZ01)|(1<<UCSZ00)
+ 24c:	82 ec       	ldi	r24, 0xC2	; 194
+ 24e:	90 e0       	ldi	r25, 0x00	; 0
+ 250:	26 e0       	ldi	r18, 0x06	; 6
+ 252:	fc 01       	movw	r30, r24
+ 254:	20 83       	st	Z, r18
+	
+	//enable transmission and reception 0x78
+	UCSR0B |= (1<<RXCIE0)|(1<<TXCIE0)|(1<<RXEN0)|(1<<TXEN0);
+ 256:	81 ec       	ldi	r24, 0xC1	; 193
+ 258:	90 e0       	ldi	r25, 0x00	; 0
+ 25a:	21 ec       	ldi	r18, 0xC1	; 193
+ 25c:	30 e0       	ldi	r19, 0x00	; 0
+ 25e:	f9 01       	movw	r30, r18
+ 260:	20 81       	ld	r18, Z
+ 262:	28 6d       	ori	r18, 0xD8	; 216
+ 264:	fc 01       	movw	r30, r24
+ 266:	20 83       	st	Z, r18
+	sei();
+ 268:	78 94       	sei
+}
+ 26a:	0f 90       	pop	r0
+ 26c:	0f 90       	pop	r0
+ 26e:	df 91       	pop	r29
+ 270:	cf 91       	pop	r28
+ 272:	08 95       	ret
+
+00000274 <BL_FlushRxBuf>:
+		BL_PutChar(sym); // call function of putting every value into the ring buffer
+	}
+}
+
+void BL_FlushRxBuf(void)  // flush our ring buffer after getting all of the array's member in out CurrentValue variable
+{
+ 274:	cf 93       	push	r28
+ 276:	df 93       	push	r29
+ 278:	cd b7       	in	r28, 0x3d	; 61
+ 27a:	de b7       	in	r29, 0x3e	; 62
+	rxBufTail = 0;
+ 27c:	10 92 04 01 	sts	0x0104, r1
+	rxBufHead = 0;
+ 280:	10 92 05 01 	sts	0x0105, r1
+	rxCount = 0;
+ 284:	10 92 06 01 	sts	0x0106, r1
+}
+ 288:	df 91       	pop	r29
+ 28a:	cf 91       	pop	r28
+ 28c:	08 95       	ret
+
+0000028e <BL_GetChar>:
+
+uint8_t BL_GetChar(void) // take one symbol from buffer using the Head pointer
+{
+ 28e:	cf 93       	push	r28
+ 290:	df 93       	push	r29
+ 292:	1f 92       	push	r1
+ 294:	cd b7       	in	r28, 0x3d	; 61
+ 296:	de b7       	in	r29, 0x3e	; 62
+	uint8_t sym;
+	if(rxCount > 0)
+ 298:	80 91 06 01 	lds	r24, 0x0106
+ 29c:	88 23       	and	r24, r24
+ 29e:	d9 f0       	breq	.+54     	; 0x2d6 <BL_GetChar+0x48>
+	{
+		sym	= BLrxBuf[rxBufHead];
+ 2a0:	80 91 05 01 	lds	r24, 0x0105
+ 2a4:	88 2f       	mov	r24, r24
+ 2a6:	90 e0       	ldi	r25, 0x00	; 0
+ 2a8:	82 5f       	subi	r24, 0xF2	; 242
+ 2aa:	9e 4f       	sbci	r25, 0xFE	; 254
+ 2ac:	fc 01       	movw	r30, r24
+ 2ae:	80 81       	ld	r24, Z
+ 2b0:	89 83       	std	Y+1, r24	; 0x01
+		rxCount --;
+ 2b2:	80 91 06 01 	lds	r24, 0x0106
+ 2b6:	81 50       	subi	r24, 0x01	; 1
+ 2b8:	80 93 06 01 	sts	0x0106, r24
+		rxBufHead++;
+ 2bc:	80 91 05 01 	lds	r24, 0x0105
+ 2c0:	8f 5f       	subi	r24, 0xFF	; 255
+ 2c2:	80 93 05 01 	sts	0x0105, r24
+		if(rxBufHead == SIZE_BUF) rxBufHead = 0;
+ 2c6:	80 91 05 01 	lds	r24, 0x0105
+ 2ca:	80 32       	cpi	r24, 0x20	; 32
+ 2cc:	11 f4       	brne	.+4      	; 0x2d2 <BL_GetChar+0x44>
+ 2ce:	10 92 05 01 	sts	0x0105, r1
+		return sym;
+ 2d2:	89 81       	ldd	r24, Y+1	; 0x01
+ 2d4:	01 c0       	rjmp	.+2      	; 0x2d8 <BL_GetChar+0x4a>
+	}
+	return 0;
+ 2d6:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 2d8:	0f 90       	pop	r0
+ 2da:	df 91       	pop	r29
+ 2dc:	cf 91       	pop	r28
+ 2de:	08 95       	ret
+
+000002e0 <main>:
+#include "BLrxtx.h" // ring buffer routine
+#include "BLdefComd.h" // define bluetooth command
+#include "PWM.h"
+
+int main(void) // main function do something
+{
+ 2e0:	cf 93       	push	r28
+ 2e2:	df 93       	push	r29
+ 2e4:	cd b7       	in	r28, 0x3d	; 61
+ 2e6:	de b7       	in	r29, 0x3e	; 62
+	
+	//uint8_t txMessage[16] = "Hello World!\r\n";
+	BL_Init(MYUBRR);
+ 2e8:	87 e6       	ldi	r24, 0x67	; 103
+ 2ea:	90 e0       	ldi	r25, 0x00	; 0
+ 2ec:	0e 94 12 01 	call	0x224	; 0x224 <BL_Init>
+	PWM_Init();
+ 2f0:	0e 94 83 01 	call	0x306	; 0x306 <PWM_Init>
+	
+	while(1)
+	{
+		if (BLmesIsComplete)  // if the last got byte is 0x0A (LF)
+ 2f4:	80 91 5e 01 	lds	r24, 0x015E
+ 2f8:	88 23       	and	r24, r24
+ 2fa:	21 f0       	breq	.+8      	; 0x304 <main+0x24>
+		{
+			BL_DefComd();
+ 2fc:	0e 94 69 00 	call	0xd2	; 0xd2 <BL_DefComd>
+			BLmesIsComplete = 0;
+ 300:	10 92 5e 01 	sts	0x015E, r1
+		//if (txCount == 0)
+		//{
+		//BL_SendStr(txMessage);
+		//}
+		
+	}
+ 304:	f7 cf       	rjmp	.-18     	; 0x2f4 <main+0x14>
+
+00000306 <PWM_Init>:
+#include <avr/io.h>
+#include "BLdefComd.h"
+
+void PWM_Init()
+{
+ 306:	cf 93       	push	r28
+ 308:	df 93       	push	r29
+ 30a:	cd b7       	in	r28, 0x3d	; 61
+ 30c:	de b7       	in	r29, 0x3e	; 62
+	DDRD = (1 << PORTD6); // set up pin portd6 like output
+ 30e:	8a e2       	ldi	r24, 0x2A	; 42
+ 310:	90 e0       	ldi	r25, 0x00	; 0
+ 312:	20 e4       	ldi	r18, 0x40	; 64
+ 314:	fc 01       	movw	r30, r24
+ 316:	20 83       	st	Z, r18
+					
+}
+ 318:	df 91       	pop	r29
+ 31a:	cf 91       	pop	r28
+ 31c:	08 95       	ret
+
+0000031e <atoi>:
+ 31e:	fc 01       	movw	r30, r24
+ 320:	88 27       	eor	r24, r24
+ 322:	99 27       	eor	r25, r25
+ 324:	e8 94       	clt
+ 326:	21 91       	ld	r18, Z+
+ 328:	20 32       	cpi	r18, 0x20	; 32
+ 32a:	e9 f3       	breq	.-6      	; 0x326 <atoi+0x8>
+ 32c:	29 30       	cpi	r18, 0x09	; 9
+ 32e:	10 f0       	brcs	.+4      	; 0x334 <atoi+0x16>
+ 330:	2e 30       	cpi	r18, 0x0E	; 14
+ 332:	c8 f3       	brcs	.-14     	; 0x326 <atoi+0x8>
+ 334:	2b 32       	cpi	r18, 0x2B	; 43
+ 336:	41 f0       	breq	.+16     	; 0x348 <atoi+0x2a>
+ 338:	2d 32       	cpi	r18, 0x2D	; 45
+ 33a:	39 f4       	brne	.+14     	; 0x34a <atoi+0x2c>
+ 33c:	68 94       	set
+ 33e:	04 c0       	rjmp	.+8      	; 0x348 <atoi+0x2a>
+ 340:	0e 94 ad 01 	call	0x35a	; 0x35a <__mulhi_const_10>
+ 344:	82 0f       	add	r24, r18
+ 346:	91 1d       	adc	r25, r1
+ 348:	21 91       	ld	r18, Z+
+ 34a:	20 53       	subi	r18, 0x30	; 48
+ 34c:	2a 30       	cpi	r18, 0x0A	; 10
+ 34e:	c0 f3       	brcs	.-16     	; 0x340 <atoi+0x22>
+ 350:	1e f4       	brtc	.+6      	; 0x358 <atoi+0x3a>
+ 352:	90 95       	com	r25
+ 354:	81 95       	neg	r24
+ 356:	9f 4f       	sbci	r25, 0xFF	; 255
+ 358:	08 95       	ret
+
+0000035a <__mulhi_const_10>:
+ 35a:	7a e0       	ldi	r23, 0x0A	; 10
+ 35c:	97 9f       	mul	r25, r23
+ 35e:	90 2d       	mov	r25, r0
+ 360:	87 9f       	mul	r24, r23
+ 362:	80 2d       	mov	r24, r0
+ 364:	91 0d       	add	r25, r1
+ 366:	11 24       	eor	r1, r1
+ 368:	08 95       	ret
+
+0000036a <_exit>:
+ 36a:	f8 94       	cli
+
+0000036c <__stop_program>:
+ 36c:	ff cf       	rjmp	.-2      	; 0x36c <__stop_program>
